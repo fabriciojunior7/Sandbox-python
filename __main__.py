@@ -1,10 +1,10 @@
 import pygame, sys, random
-import jogadores, arvores, zumbies
+import jogadores, arvores, zumbies, barras
 import cores
 
 def jogo():
-	largura = 600
-	altura = 600
+	largura = 700
+	altura = 700
 	frames = 60
 
 	pygame.init()
@@ -19,16 +19,23 @@ def jogo():
 	global posicao
 	posicao = [300, 300]
 
-	areaX = 2000
-	areaY = 2000
+	areaX = 5000
+	areaY = 5000
 
 	#Objetos
 	jogador = jogadores.Jogador(largura/2 - 10, altura/2 - 10, 20, 20, cores.vermelho, areaX, areaY)
-	numZumbies = 10
+	barraSuperficie = pygame.Surface((400, 50))
+	barraSuperficie.set_alpha(150)
+	numBarras = 8
+	barrinhas = []
+	for i in range(numBarras):
+		barrinhas.append(barras.Barra(155+(i*50), 655, 40, 40, cores.amarelo))
+	#barra = barras.Barra(150, 650, 400, 50, cores.branco)
+	numZumbies = 100
 	horda = []
 	for i in range(numZumbies):
 		horda.append(zumbies.Zumbie(random.randint(0, areaX-20), random.randint(0, areaY-20), 20, 20, cores.zumbie))
-	numArvores = 50
+	numArvores = 1000
 	floresta = []
 	for i in range(numArvores):
 		#floresta.append(arvores.Arvore(random.randint(0, largura-50), random.randint(0, altura-50), 50, 50, cores.vermelho))
@@ -37,6 +44,7 @@ def jogo():
 	def rodar():
 		pygame.display.update()
 		relogio.tick(frames)
+		pygame.display.set_caption("Sandbox - | Posicao: (%.1f - %.1f) FPS: %.1f |" % (posicao[0], posicao[1], relogio.get_fps()))
 		#Objetos
 		global cameraX
 		cameraX = jogador.atualizarPosicaoX(posicao[0])
@@ -44,7 +52,9 @@ def jogo():
 		global cameraY
 		cameraY = jogador.atualizarPosicaoY(posicao[1])
 		posicao[1] -= jogador.atualizarPosicaoY(posicao[1])
-		print posicao
+		#print(posicao)
+		#print("%.1f" % relogio.get_fps())
+		#print("%.1f" % relogio.get_rawtime())
 		
 	def desenhar():
 		tela.fill(cores.grama)
@@ -52,13 +62,21 @@ def jogo():
 		jogador.desenhar(tela)
 
 		for z in horda:
-			z.seguir(jogador.x, jogador.y, largura, altura)
 			z.update(cameraX, cameraY)
-			z.desenhar(tela)
+			if((z.x >= -z.largura and z.x <= largura) and (z.y >= -z.altura and z.y <= altura)):
+				z.seguir(jogador.x, jogador.y, largura, altura)
+				z.desenhar(tela)
 
 		for a in floresta:
 			a.update(cameraX, cameraY)
-			a.desenhar(tela)
+			if((a.x >= -a.largura and a.x <= largura) and (a.y >= -a.altura and a.y <= altura)):
+				a.desenhar(tela)
+
+		barraSuperficie.fill(cores.preto)
+		tela.blit(barraSuperficie, (150, 650))
+
+		for b in barrinhas:
+			b.desenhar(tela)
 
 	while (True):
 		for event in pygame.event.get():

@@ -8,6 +8,7 @@ class Jogador(entidades.Entidade):
 		self.wasd = [False, False, False, False]
 		self.areaX = areaX
 		self.areaY = areaY
+		self.vida = 5
 
 	def botaoPressionado(self, key):
 		#Y

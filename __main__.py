@@ -19,8 +19,8 @@ def jogo():
 	global posicao
 	posicao = [300, 300]
 
-	areaX = 5000
-	areaY = 5000
+	areaX = 50000
+	areaY = 50000
 
 	#Objetos
 	jogador = jogadores.Jogador(largura/2 - 10, altura/2 - 10, 20, 20, cores.vermelho, areaX, areaY)
@@ -31,11 +31,11 @@ def jogo():
 	for i in range(numBarras):
 		barrinhas.append(barras.Barra(155+(i*50), 655, 40, 40, cores.amarelo))
 	#barra = barras.Barra(150, 650, 400, 50, cores.branco)
-	numZumbies = 100
+	numZumbies = 1000
 	horda = []
 	for i in range(numZumbies):
 		horda.append(zumbies.Zumbie(random.randint(0, areaX-20), random.randint(0, areaY-20), 20, 20, cores.zumbie))
-	numArvores = 1000
+	numArvores = 10000
 	floresta = []
 	for i in range(numArvores):
 		#floresta.append(arvores.Arvore(random.randint(0, largura-50), random.randint(0, altura-50), 50, 50, cores.vermelho))

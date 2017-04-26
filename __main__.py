@@ -35,13 +35,14 @@ def jogo():
 
 	global posicao
 	posicao = [areaX/2-10, areaY/2-10]
+	#posicao = [300, 300]
 
 	mapa = []
 	linha = 0
 	coluna = 0
 	loading = 0
 	for i in range(numChunks):
-		mapa.append(chunks.Chunk(linha*tamanhoChunk, coluna*tamanhoChunk, tamanhoChunk, tamanhoChunk, random.randint(0, 21)))
+		mapa.append(chunks.Chunk(linha*tamanhoChunk, coluna*tamanhoChunk, tamanhoChunk, tamanhoChunk, random.randint(0, 21), 2))
 		linha += 1
 		if(linha == math.sqrt(numChunks)):
 			linha = 0
@@ -51,6 +52,11 @@ def jogo():
 
 	#Objetos
 	jogador = jogadores.Jogador(largura/2 - 10, altura/2 - 10, 20, 20, cores.vermelho, areaX, areaY)
+	numZumbies = 25
+	horda = []
+	for i in range(numZumbies):
+		horda.append(zumbies.Zumbie(random.randint(posicao[0]-1000, posicao[0]+1000), random.randint(posicao[0]-1000, posicao[0]+1000), 20, 20, cores.zumbie))
+
 	barraSuperficie = pygame.Surface((400, 50))
 	barraSuperficie.set_alpha(150)
 	numBarras = 8
@@ -77,11 +83,21 @@ def jogo():
 		i = 0
 		global chunksCarregando
 		chunksCarregando = 0
+
+		i = 0
+		for z in horda:
+			z.seguir(posicao[0], posicao[1], largura, altura)
+			z.desenhar(tela, posicao[0], posicao[1])
+			if((z.x < posicao[0]-2000 or z.x > posicao[0]+2000) or (z.y < posicao[1]-2000 or z.y > posicao[1]+2000)):
+				horda.pop(i)
+			i += 1
+		if(i < numZumbies):
+			horda.append(zumbies.Zumbie(random.randint(posicao[0]-1000, posicao[0]+1000), random.randint(posicao[1]-1000, posicao[1]+1000), 20, 20, cores.zumbie))
+
 		for c in mapa:
 			if((c.x <= posicao[0]+(2*largura/3) and c.x+tamanhoChunk >= posicao[0]-(2*largura/3)) and (c.y <= posicao[1]+(2*altura/3) and c.y+tamanhoChunk >= posicao[1]-(2*altura/3))):
 				c.desenhar(cameraX, cameraY, tela, posicao)
 				chunksCarregando += 1
-			i += 1
 
 		barraSuperficie.fill(cores.preto)
 		tela.blit(barraSuperficie, (150, 650))

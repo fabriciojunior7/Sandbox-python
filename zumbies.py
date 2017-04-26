@@ -6,10 +6,15 @@ class Zumbie(entidades.Entidade):
 		entidades.Entidade.__init__(self, x, y, largura, altura, cor)
 		#Atributos
 		self.velocidadeAndar = random.randint(2, 6)/10.0
-		self.campoVisao = 100
+		self.campoVisao = 300
+
+	def desenhar(self, tela, x, y):
+		self.corpo = pygame.Rect(self.x-(x-340), self.y-(y-340), self.largura, self.altura)
+		pygame.draw.rect(tela, self.cor, self.corpo)
+		#print("%i - %i" % (self.x, self.y))
 
 	def seguir(self, x, y, largura, altura):
-		if((self.x+self.largura >= self.campoVisao and self.x <= largura-self.campoVisao) and (self.y+self.altura >= self.campoVisao and self.y <= altura-self.campoVisao)):
+		if((x >= self.x-self.campoVisao and x <= self.x+self.campoVisao) and (y >= self.y-self.campoVisao and y <= self.y+self.campoVisao)):
 			#X
 			if(self.x < x):
 				self.x += self.velocidadeAndar

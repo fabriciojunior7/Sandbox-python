@@ -10,5 +10,6 @@ implementar barra funcional [X]
 == Entidade ==
 
 implementar arvores [F]
-implementar zumbies [X]
+implementar zumbies Spawnam [F]
+implementar galinhas Spawnam [X]
 implementar pedras [X]

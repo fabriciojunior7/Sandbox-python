@@ -13,26 +13,26 @@ class Jogador(entidades.Entidade):
 
 	def botaoPressionado(self, key):
 		#Y
-		if(key == pygame.K_w):
+		if(key == pygame.K_w or key == pygame.K_UP):
 			self.wasd[0] = True
-		elif(key == pygame.K_s):
+		elif(key == pygame.K_s or key == pygame.K_DOWN):
 			self.wasd[2] = True
 		#X
-		if(key == pygame.K_a):
+		if(key == pygame.K_a or key == pygame.K_LEFT):
 			self.wasd[1] = True
-		elif(key == pygame.K_d):
+		elif(key == pygame.K_d or key == pygame.K_RIGHT):
 			self.wasd[3] = True
 
 	def botaoSolto(self, key):
 		#Y
-		if(key == pygame.K_w):
+		if(key == pygame.K_w or key == pygame.K_UP):
 			self.wasd[0] = False
-		elif(key == pygame.K_s):
+		elif(key == pygame.K_s or key == pygame.K_DOWN):
 			self.wasd[2] = False
 		#X
-		elif(key == pygame.K_a):
+		if(key == pygame.K_a or key == pygame.K_LEFT):
 			self.wasd[1] = False
-		elif(key == pygame.K_d):
+		elif(key == pygame.K_d or key == pygame.K_RIGHT):
 			self.wasd[3] = False
 
 	def atualizarPosicaoY(self, y):

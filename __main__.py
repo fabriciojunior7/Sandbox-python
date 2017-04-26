@@ -22,36 +22,32 @@ def jogo():
 	cameraX = 0
 	global cameraY
 	cameraY = 0
-	global posicao
-	posicao = [300, 300]
 
 	global chunksCarregando
 	chunksCarregando = 0
-	areaX = 100000
-	areaY = 100000
 	global tamanhoChunk
-	tamanhoChunk = 1000
-
+	tamanhoChunk = 700
 	numChunks = 10000
+
+	areaX = tamanhoChunk*math.sqrt(numChunks)
+	areaY = tamanhoChunk*math.sqrt(numChunks)
+	print areaX
+
+	global posicao
+	posicao = [areaX/2-10, areaY/2-10]
+
 	mapa = []
 	linha = 0
 	coluna = 0
-	numeroX = 0
-	numeroY = 0
+	loading = 0
 	for i in range(numChunks):
-		if(linha > 0):
-			numeroX = 1
-		else:
-			numeroX = 0
-		if(coluna > 0):
-			numeroY = 1
-		else:
-			numeroY = 0
-		mapa.append(chunks.Chunk(linha*tamanhoChunk, coluna*tamanhoChunk, tamanhoChunk, tamanhoChunk, random.randint(0, 101)))
+		mapa.append(chunks.Chunk(linha*tamanhoChunk, coluna*tamanhoChunk, tamanhoChunk, tamanhoChunk, random.randint(0, 21)))
 		linha += 1
 		if(linha == math.sqrt(numChunks)):
 			linha = 0
 			coluna += 1
+		loading += 1.0
+		pygame.display.set_caption("SANDBOX - Carregando %.1f" % ((loading/numChunks)*100)+"%")
 
 	#Objetos
 	jogador = jogadores.Jogador(largura/2 - 10, altura/2 - 10, 20, 20, cores.vermelho, areaX, areaY)
@@ -62,17 +58,6 @@ def jogo():
 	for i in range(numBarras):
 		barrinhas.append(barras.Barra(155+(i*50), 655, 40, 40, cores.amarelo))
 
-	'''
-	numZumbies = 1000
-	horda = []
-	for i in range(numZumbies):
-		horda.append(zumbies.Zumbie(random.randint(0, areaX-20), random.randint(0, areaY-20), 20, 20, cores.zumbie))
-	numArvores = 10000
-	floresta = []
-	for i in range(numArvores):
-		#floresta.append(arvores.Arvore(random.randint(0, largura-50), random.randint(0, altura-50), 50, 50, cores.vermelho))
-		floresta.append(arvores.Arvore(random.randint(0, areaX-50), random.randint(0, areaY-50), 50, 50, cores.arvore))
-	'''
 	def rodar():
 		pygame.display.update()
 		relogio.tick(frames)
@@ -93,8 +78,6 @@ def jogo():
 		global chunksCarregando
 		chunksCarregando = 0
 		for c in mapa:
-			#if((c.x <= posicao[0]+(largura/2) and c.x+tamanhoChunk+(largura/2) >= posicao[0]) and (c.y <= posicao[1]+(altura/2) and c.y+tamanhoChunk+(altura/2) >= posicao[1])):
-			#if((c.x <= posicao[0]+largura and c.x+tamanhoChunk >= posicao[0]-largura) and (c.y <= posicao[1]+altura and c.y+tamanhoChunk >= posicao[1]-altura)):
 			if((c.x <= posicao[0]+(2*largura/3) and c.x+tamanhoChunk >= posicao[0]-(2*largura/3)) and (c.y <= posicao[1]+(2*altura/3) and c.y+tamanhoChunk >= posicao[1]-(2*altura/3))):
 				c.desenhar(cameraX, cameraY, tela, posicao)
 				chunksCarregando += 1
@@ -105,30 +88,6 @@ def jogo():
 
 		for b in barrinhas:
 			b.desenhar(tela)
-	
-	'''
-	def desenhar():
-		tela.fill(cores.grama)
-		#Objetos
-		jogador.desenhar(tela)
-
-		for z in horda:
-			z.update(cameraX, cameraY)
-			if((z.x >= -z.largura and z.x <= largura) and (z.y >= -z.altura and z.y <= altura)):
-				z.seguir(jogador.x, jogador.y, largura, altura)
-				z.desenhar(tela)
-
-		for a in floresta:
-			a.update(cameraX, cameraY)
-			if((a.x >= -a.largura and a.x <= largura) and (a.y >= -a.altura and a.y <= altura)):
-				a.desenhar(tela)
-
-		barraSuperficie.fill(cores.preto)
-		tela.blit(barraSuperficie, (150, 650))
-
-		for b in barrinhas:
-			b.desenhar(tela)
-	'''
 
 	while (True):
 		for event in pygame.event.get():

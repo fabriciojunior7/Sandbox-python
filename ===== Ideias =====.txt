@@ -1,3 +1,14 @@
-===== Ideias =====
+========== Ideias ==========
 
-implementar chunks - 2000x2000 px
+== Game Play ==
+
+implementar chunks - 700x700 px [F]
+implementar vida [X]
+implementar ferrametas [X]
+implementar barra funcional [X]
+
+== Entidade ==
+
+implementar arvores [F]
+implementar zumbies [X]
+implementar pedras [X]

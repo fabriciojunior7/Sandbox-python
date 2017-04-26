@@ -4,6 +4,7 @@ import entidades
 class Jogador(entidades.Entidade):
 	def __init__(self, x, y, largura, altura, cor, areaX, areaY):
 		entidades.Entidade.__init__(self, x, y, largura, altura, cor)
+		#Atributos
 		self.velocidadeAndar = 3
 		self.wasd = [False, False, False, False]
 		self.areaX = areaX

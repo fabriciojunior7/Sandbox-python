@@ -4,6 +4,7 @@ import entidades
 class Zumbie(entidades.Entidade):
 	def __init__(self, x, y, largura, altura, cor):
 		entidades.Entidade.__init__(self, x, y, largura, altura, cor)
+		#Atributos
 		self.velocidadeAndar = random.randint(2, 6)/10.0
 		self.campoVisao = 100
 

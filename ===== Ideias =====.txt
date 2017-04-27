@@ -2,15 +2,17 @@
 
 == Game Play ==
 
-implementar chunks - 700x700 px [F]
-implementar vida [X]
+implementar chunks - 700x700 px [F]        (26/04/2017)
+implementar vida [F]                       (27/04/2017)
+implementar gameover [X]
 implementar ferrametas [X]
 implementar barra funcional [X]
-implementar colisoes [X]
+implementar colisoes [F]                   (27/04/2017)
 
 == Entidade ==
 
-implementar arvores [F]
-implementar zumbies Spawnam [F]
+implementar arvores [F]                    (25/04/2017)
+implementar zumbies [F]                    (25/04/2017)
+implementar zumbies Spawnam [F]            (26/04/2017)
 implementar galinhas Spawnam [X]
-implementar pedras [X]
+implementar pedras [F]                     (26/04/2017)

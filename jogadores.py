@@ -9,7 +9,7 @@ class Jogador(entidades.Entidade):
 		self.wasd = [False, False, False, False]
 		self.areaX = areaX
 		self.areaY = areaY
-		self.vida = 5
+		self.vida = 20
 
 	def darVida(self, pontos):
 		self.vida += pontos

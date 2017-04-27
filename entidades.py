@@ -12,10 +12,10 @@ class Entidade(object):
 		self.corpo = pygame.Rect(self.x, self.y, self.largura, self.altura)
 		self.fisica = fisica
 		if(fisica == True):
-			self.larguraTB = self.largura
+			self.larguraTB = self.largura-6
 			self.alturaTB = 5
 			self.larguraDE = 5
-			self.alturaDE = self.altura
+			self.alturaDE = self.altura-6
 			self.separacao = 15
 			self.corpo = pygame.Rect(self.x, self.y, self.largura, self.altura)
 			self.topo = pygame.Rect(self.x, (self.y - self.alturaTB), self.larguraTB, self.alturaTB)
@@ -30,14 +30,14 @@ class Entidade(object):
 			self.desenharFisica(tela)
 
 	def desenharFisica(self, tela, x, y):
-		self.topo = pygame.Rect(x, (y - self.alturaTB), self.larguraTB, self.alturaTB)
-		self.base = pygame.Rect(x, (y + self.altura), self.larguraTB, self.alturaTB)
-		self.esquerda = pygame.Rect((x - self.larguraDE), y, self.larguraDE, self.alturaDE)
-		self.direita = pygame.Rect((x + self.largura), y, self.larguraDE, self.alturaDE)
-		pygame.draw.rect(tela, cores.branco, self.topo)
-		pygame.draw.rect(tela, cores.branco, self.base)
-		pygame.draw.rect(tela, cores.branco, self.direita)
-		pygame.draw.rect(tela, cores.branco, self.esquerda)
+		self.topo = pygame.Rect(x+3, (y - self.alturaTB)+5, self.larguraTB, self.alturaTB)
+		self.base = pygame.Rect(x+3, (y + self.altura)-5, self.larguraTB, self.alturaTB)
+		self.esquerda = pygame.Rect((x - self.larguraDE)+5, y+3, self.larguraDE, self.alturaDE)
+		self.direita = pygame.Rect((x + self.largura)-5, y+3, self.larguraDE, self.alturaDE)
+		#pygame.draw.rect(tela, cores.branco, self.topo)
+		#pygame.draw.rect(tela, cores.branco, self.base)
+		#pygame.draw.rect(tela, cores.branco, self.direita)
+		#pygame.draw.rect(tela, cores.branco, self.esquerda)
 
 	def update(self, x, y):
 		self.x += x

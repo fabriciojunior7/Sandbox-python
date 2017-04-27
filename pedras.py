@@ -8,5 +8,3 @@ class Pedra(entidades.Entidade):
 	def desenhar(self, tela, x, y):
 		self.corpo = pygame.Rect(self.x-(x-300), self.y-(y-300), self.largura, self.altura)
 		pygame.draw.rect(tela, self.cor, self.corpo)
-		if(self.fisica == True):
-			self.desenharFisica(tela, self.x-(x-300), self.y-(y-300))

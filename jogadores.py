@@ -2,14 +2,19 @@ import pygame
 import entidades
 
 class Jogador(entidades.Entidade):
-	def __init__(self, x, y, largura, altura, cor, areaX, areaY):
-		entidades.Entidade.__init__(self, x, y, largura, altura, cor)
+	def __init__(self, x, y, largura, altura, cor, areaX, areaY, fisica):
+		entidades.Entidade.__init__(self, x, y, largura, altura, cor, fisica)
 		#Atributos
 		self.velocidadeAndar = 3
 		self.wasd = [False, False, False, False]
 		self.areaX = areaX
 		self.areaY = areaY
 		self.vida = 5
+
+	def darVida(self, pontos):
+		self.vida += pontos
+	def tirarVida(self, pontos):
+		self.vida -= pontos
 
 	def botaoPressionado(self, key):
 		#Y

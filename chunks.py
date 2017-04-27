@@ -13,12 +13,12 @@ class Chunk(object):
 		self.numArvores = numArvores
 		self.flora = []
 		for i in range(self.numArvores):
-			self.flora.append(arvores.Arvore(random.randint(self.x, self.largura+self.x-50), random.randint(self.y, self.altura+self.y-50), 50, 50, cores.arvore))
+			self.flora.append(arvores.Arvore(random.randint(self.x, self.largura+self.x-50), random.randint(self.y, self.altura+self.y-50), 50, 50, cores.arvore, False))
 
 		self.numPedras = numPedras
 		self.rochas = []
 		for i in range(self.numPedras):
-			self.rochas.append(pedras.Pedra(random.randint(self.x, self.largura+self.x-20), random.randint(self.y, self.altura+self.y-20), 20, 20, cores.pedra))
+			self.rochas.append(pedras.Pedra(random.randint(self.x, self.largura+self.x-20), random.randint(self.y, self.altura+self.y-20), 20, 20, cores.pedra, True))
 
 	def desenhar(self, cameraX, cameraY, tela, posicao):
 		for p in self.rochas:

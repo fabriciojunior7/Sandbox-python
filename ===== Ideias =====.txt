@@ -6,6 +6,7 @@ implementar chunks - 700x700 px [F]
 implementar vida [X]
 implementar ferrametas [X]
 implementar barra funcional [X]
+implementar colisoes [X]
 
 == Entidade ==
 

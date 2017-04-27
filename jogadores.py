@@ -10,6 +10,10 @@ class Jogador(entidades.Entidade):
 		self.areaX = areaX
 		self.areaY = areaY
 		self.vida = 20
+		self.ultimaDirecao = "w"
+		self.slot = 0
+		self.slots = []
+		self.numPedras = 0
 
 	def darVida(self, pontos):
 		self.vida += pontos
@@ -32,13 +36,17 @@ class Jogador(entidades.Entidade):
 		#Y
 		if(key == pygame.K_w or key == pygame.K_UP):
 			self.wasd[0] = False
+			self.ultimaDirecao = "w"
 		elif(key == pygame.K_s or key == pygame.K_DOWN):
 			self.wasd[2] = False
+			self.ultimaDirecao = "s"
 		#X
 		if(key == pygame.K_a or key == pygame.K_LEFT):
 			self.wasd[1] = False
+			self.ultimaDirecao = "a"
 		elif(key == pygame.K_d or key == pygame.K_RIGHT):
 			self.wasd[3] = False
+			self.ultimaDirecao = "d"
 
 	def atualizarPosicaoY(self, y):
 		if(self.wasd[0] == True and y > 0):

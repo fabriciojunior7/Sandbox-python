@@ -11,6 +11,7 @@ class Entidade(object):
 		self.cor = cor
 		self.corpo = pygame.Rect(self.x, self.y, self.largura, self.altura)
 		self.fisica = fisica
+		self.durabilidade = 7
 		if(fisica == True):
 			self.larguraTB = self.largura-6
 			self.alturaTB = 5
@@ -51,3 +52,6 @@ class Entidade(object):
 		return forca
 	def empurrarEsquerda(self, forca):
 		return -forca
+
+	def quebrar(self, pontos):
+		self.durabilidade -= pontos

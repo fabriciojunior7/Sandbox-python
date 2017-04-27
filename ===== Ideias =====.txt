@@ -5,7 +5,9 @@
 implementar chunks - 700x700 px [F]        (26/04/2017)
 implementar vida [F]                       (27/04/2017)
 implementar gameover [X]
-implementar ferrametas [X]
+- implementar ferrametas [X]
+implementar picarestas [X]
+
 implementar barra funcional [X]
 implementar colisoes [F]                   (27/04/2017)
 
@@ -15,4 +17,8 @@ implementar arvores [F]                    (25/04/2017)
 implementar zumbies [F]                    (25/04/2017)
 implementar zumbies Spawnam [F]            (26/04/2017)
 implementar galinhas Spawnam [X]
+
+== Blocos ==
+
 implementar pedras [F]                     (26/04/2017)
+implementar madeira [X]

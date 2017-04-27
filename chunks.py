@@ -22,6 +22,6 @@ class Chunk(object):
 
 	def desenhar(self, cameraX, cameraY, tela, posicao):
 		for p in self.rochas:
-			p.desenhar(tela, posicao[0], posicao[1])
+			p.desenharChunk(tela, posicao[0], posicao[1])
 		for a in self.flora:
-			a.desenhar(tela, posicao[0], posicao[1])
+			a.desenharChunk(tela, posicao[0], posicao[1])

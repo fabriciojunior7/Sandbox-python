@@ -8,7 +8,7 @@ class Zumbie(entidades.Entidade):
 		self.velocidadeAndar = random.randint(2, 6)/10.0
 		self.campoVisao = 300
 
-	def desenhar(self, tela, x, y):
+	def desenharChunk(self, tela, x, y):
 		self.corpo = pygame.Rect(self.x-(x-340), self.y-(y-340), self.largura, self.altura)
 		pygame.draw.rect(tela, self.cor, self.corpo)
 		#print("%i - %i" % (self.x, self.y))
